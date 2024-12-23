@@ -9,9 +9,11 @@ services:
     name: taskManager
     runtime: ruby
     plan: free
-    buildCommand: "./bin/render-build.sh"
-    #preDeployCommand: "bundle exec rails db:migrate" #preDeployCommand only available on paid instance types
-    startCommand: "bundle exec rails server"
+    # buildCommand: "./bin/render-build.sh"
+    # #preDeployCommand: "bundle exec rails db:migrate" #preDeployCommand only available on paid instance types
+    # startCommand: "bundle exec rails server"
+    buildCommand: "bundle install"
+    startCommand: "bundle exec rails server -b '0.0.0.0' -p $PORT"
     envVars:
     - key: DATABASE_URL
       fromDatabase:
